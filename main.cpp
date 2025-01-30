@@ -108,59 +108,33 @@ void ControlLED_DigitalIO (){
 
 void ControlLED_BusIO (){
     //Write your code here
-    
-    if(bin[0] == 1){
-        if(bin[1] == 1){
-            if(bin[2] == 1){
-                if(bin[3] == 1){
-                    bout[0] = 1;
-                    bout[1] = 1;
-                    bout[2] = 1;
-                    cout << "All LEDs" << endl;
-                }
-                else{
-                    bout[2] = 1;
-                    bout[0] = 0;
-                    bout[1] = 0;
-                    cout << "BLUE" << endl;
-                }
-            }
-            else{
-                bout[2] = 1;
-                bout[0] = 0;
-                bout[1] = 0;
-                cout << "BLUE" << endl;
-
-            }
-        }
-        else{
-            bout[0] = 1;
-            bout[1] = 1;
-            bout[2] = 0;
-            cout << "RED & YELLOW" << endl;
-
-        }
-    }
-    else{
-        if(bin[1] == 1){
-            if(bin[2] == 1){
-                bout[0] = 1;
-                bout[1] = 1;
-                bout[2] = 0;
-                cout << "RED & YELLOW" << endl;
-            }
-            else{
-                bout[1] = 1;
-                bout[2] = 0;
-                bout[0] = 0;
-                cout << "YELLOW" << endl;
-            }
-        }
-        else{
-            bout[0] = 1;
-            bout[2] = 0;
-            bout[1] = 0;
-            cout << "RED" << endl;
-        }
+    switch(bin){
+	    case 0 ... 3:
+		bout = 0b0100;
+	    	cout << "RED" << endl;
+	    	break;
+	    
+	    case 4 ... 5:
+	    	bout = 0b0010;
+	    	cout << "YELLOW" << endl;
+	    	break;
+	    
+	    case 6 ... 11:
+	    	bout = 0b0110;
+	    	cout << "RED & YELLOW" << endl;
+	    	break;
+	    
+	    case 12 ... 14;
+	    	bout = 0b0001;
+	    	cout << "BLUE" <<endl;
+	    	break;
+	    
+	    case 15:
+	    	bout = 0b0111;
+	    	cout << "ALL LEDs" <<endl;
+	    	break;
+	    
+	    default:
+	    	break;	    	
     }
 }
